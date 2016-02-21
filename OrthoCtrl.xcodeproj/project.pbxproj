@@ -1,0 +1,506 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3A3BBDF51C7A31F300A93376 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3BBDF41C7A31F300A93376 /* AppDelegate.m */; };
+		3A3BBDF81C7A31F300A93376 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3BBDF71C7A31F300A93376 /* main.m */; };
+		3A3BBDFA1C7A31F300A93376 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A3BBDF91C7A31F300A93376 /* Assets.xcassets */; };
+		3A3BBDFD1C7A31F300A93376 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A3BBDFB1C7A31F300A93376 /* MainMenu.xib */; };
+		3A3BBE081C7A31F300A93376 /* OrthoCtrlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3BBE071C7A31F300A93376 /* OrthoCtrlTests.m */; };
+		3A3BBE131C7A31F300A93376 /* OrthoCtrlUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3BBE121C7A31F300A93376 /* OrthoCtrlUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3A3BBE041C7A31F300A93376 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A3BBDE81C7A31F300A93376 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3A3BBDEF1C7A31F300A93376;
+			remoteInfo = OrthoCtrl;
+		};
+		3A3BBE0F1C7A31F300A93376 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A3BBDE81C7A31F300A93376 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3A3BBDEF1C7A31F300A93376;
+			remoteInfo = OrthoCtrl;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3A3BBDF01C7A31F300A93376 /* OrthoCtrl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrthoCtrl.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A3BBDF31C7A31F300A93376 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3A3BBDF41C7A31F300A93376 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3A3BBDF71C7A31F300A93376 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3A3BBDF91C7A31F300A93376 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3A3BBDFC1C7A31F300A93376 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		3A3BBDFE1C7A31F300A93376 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A3BBE031C7A31F300A93376 /* OrthoCtrlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrthoCtrlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A3BBE071C7A31F300A93376 /* OrthoCtrlTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrthoCtrlTests.m; sourceTree = "<group>"; };
+		3A3BBE091C7A31F300A93376 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A3BBE0E1C7A31F300A93376 /* OrthoCtrlUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrthoCtrlUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A3BBE121C7A31F300A93376 /* OrthoCtrlUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrthoCtrlUITests.m; sourceTree = "<group>"; };
+		3A3BBE141C7A31F300A93376 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3A3BBDED1C7A31F300A93376 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A3BBE001C7A31F300A93376 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A3BBE0B1C7A31F300A93376 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3A3BBDE71C7A31F300A93376 = {
+			isa = PBXGroup;
+			children = (
+				3A3BBDF21C7A31F300A93376 /* OrthoCtrl */,
+				3A3BBE061C7A31F300A93376 /* OrthoCtrlTests */,
+				3A3BBE111C7A31F300A93376 /* OrthoCtrlUITests */,
+				3A3BBDF11C7A31F300A93376 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3A3BBDF11C7A31F300A93376 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3A3BBDF01C7A31F300A93376 /* OrthoCtrl.app */,
+				3A3BBE031C7A31F300A93376 /* OrthoCtrlTests.xctest */,
+				3A3BBE0E1C7A31F300A93376 /* OrthoCtrlUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3A3BBDF21C7A31F300A93376 /* OrthoCtrl */ = {
+			isa = PBXGroup;
+			children = (
+				3A3BBDF31C7A31F300A93376 /* AppDelegate.h */,
+				3A3BBDF41C7A31F300A93376 /* AppDelegate.m */,
+				3A3BBDF91C7A31F300A93376 /* Assets.xcassets */,
+				3A3BBDFB1C7A31F300A93376 /* MainMenu.xib */,
+				3A3BBDFE1C7A31F300A93376 /* Info.plist */,
+				3A3BBDF61C7A31F300A93376 /* Supporting Files */,
+			);
+			path = OrthoCtrl;
+			sourceTree = "<group>";
+		};
+		3A3BBDF61C7A31F300A93376 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3A3BBDF71C7A31F300A93376 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3A3BBE061C7A31F300A93376 /* OrthoCtrlTests */ = {
+			isa = PBXGroup;
+			children = (
+				3A3BBE071C7A31F300A93376 /* OrthoCtrlTests.m */,
+				3A3BBE091C7A31F300A93376 /* Info.plist */,
+			);
+			path = OrthoCtrlTests;
+			sourceTree = "<group>";
+		};
+		3A3BBE111C7A31F300A93376 /* OrthoCtrlUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3A3BBE121C7A31F300A93376 /* OrthoCtrlUITests.m */,
+				3A3BBE141C7A31F300A93376 /* Info.plist */,
+			);
+			path = OrthoCtrlUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3A3BBDEF1C7A31F300A93376 /* OrthoCtrl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A3BBE171C7A31F300A93376 /* Build configuration list for PBXNativeTarget "OrthoCtrl" */;
+			buildPhases = (
+				3A3BBDEC1C7A31F300A93376 /* Sources */,
+				3A3BBDED1C7A31F300A93376 /* Frameworks */,
+				3A3BBDEE1C7A31F300A93376 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OrthoCtrl;
+			productName = OrthoCtrl;
+			productReference = 3A3BBDF01C7A31F300A93376 /* OrthoCtrl.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3A3BBE021C7A31F300A93376 /* OrthoCtrlTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A3BBE1A1C7A31F300A93376 /* Build configuration list for PBXNativeTarget "OrthoCtrlTests" */;
+			buildPhases = (
+				3A3BBDFF1C7A31F300A93376 /* Sources */,
+				3A3BBE001C7A31F300A93376 /* Frameworks */,
+				3A3BBE011C7A31F300A93376 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3A3BBE051C7A31F300A93376 /* PBXTargetDependency */,
+			);
+			name = OrthoCtrlTests;
+			productName = OrthoCtrlTests;
+			productReference = 3A3BBE031C7A31F300A93376 /* OrthoCtrlTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3A3BBE0D1C7A31F300A93376 /* OrthoCtrlUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A3BBE1D1C7A31F300A93376 /* Build configuration list for PBXNativeTarget "OrthoCtrlUITests" */;
+			buildPhases = (
+				3A3BBE0A1C7A31F300A93376 /* Sources */,
+				3A3BBE0B1C7A31F300A93376 /* Frameworks */,
+				3A3BBE0C1C7A31F300A93376 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3A3BBE101C7A31F300A93376 /* PBXTargetDependency */,
+			);
+			name = OrthoCtrlUITests;
+			productName = OrthoCtrlUITests;
+			productReference = 3A3BBE0E1C7A31F300A93376 /* OrthoCtrlUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3A3BBDE81C7A31F300A93376 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Sebastian Wallin";
+				TargetAttributes = {
+					3A3BBDEF1C7A31F300A93376 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					3A3BBE021C7A31F300A93376 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 3A3BBDEF1C7A31F300A93376;
+					};
+					3A3BBE0D1C7A31F300A93376 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 3A3BBDEF1C7A31F300A93376;
+					};
+				};
+			};
+			buildConfigurationList = 3A3BBDEB1C7A31F300A93376 /* Build configuration list for PBXProject "OrthoCtrl" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3A3BBDE71C7A31F300A93376;
+			productRefGroup = 3A3BBDF11C7A31F300A93376 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3A3BBDEF1C7A31F300A93376 /* OrthoCtrl */,
+				3A3BBE021C7A31F300A93376 /* OrthoCtrlTests */,
+				3A3BBE0D1C7A31F300A93376 /* OrthoCtrlUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3A3BBDEE1C7A31F300A93376 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A3BBDFA1C7A31F300A93376 /* Assets.xcassets in Resources */,
+				3A3BBDFD1C7A31F300A93376 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A3BBE011C7A31F300A93376 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A3BBE0C1C7A31F300A93376 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3A3BBDEC1C7A31F300A93376 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A3BBDF81C7A31F300A93376 /* main.m in Sources */,
+				3A3BBDF51C7A31F300A93376 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A3BBDFF1C7A31F300A93376 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A3BBE081C7A31F300A93376 /* OrthoCtrlTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3A3BBE0A1C7A31F300A93376 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A3BBE131C7A31F300A93376 /* OrthoCtrlUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3A3BBE051C7A31F300A93376 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3A3BBDEF1C7A31F300A93376 /* OrthoCtrl */;
+			targetProxy = 3A3BBE041C7A31F300A93376 /* PBXContainerItemProxy */;
+		};
+		3A3BBE101C7A31F300A93376 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3A3BBDEF1C7A31F300A93376 /* OrthoCtrl */;
+			targetProxy = 3A3BBE0F1C7A31F300A93376 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3A3BBDFB1C7A31F300A93376 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A3BBDFC1C7A31F300A93376 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3A3BBE151C7A31F300A93376 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3A3BBE161C7A31F300A93376 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3A3BBE181C7A31F300A93376 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = OrthoCtrl/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = TegelSoft.OrthoCtrl;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3A3BBE191C7A31F300A93376 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = OrthoCtrl/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = TegelSoft.OrthoCtrl;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		3A3BBE1B1C7A31F300A93376 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = OrthoCtrlTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = TegelSoft.OrthoCtrlTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OrthoCtrl.app/Contents/MacOS/OrthoCtrl";
+			};
+			name = Debug;
+		};
+		3A3BBE1C1C7A31F300A93376 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = OrthoCtrlTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = TegelSoft.OrthoCtrlTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OrthoCtrl.app/Contents/MacOS/OrthoCtrl";
+			};
+			name = Release;
+		};
+		3A3BBE1E1C7A31F300A93376 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = OrthoCtrlUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = TegelSoft.OrthoCtrlUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = OrthoCtrl;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		3A3BBE1F1C7A31F300A93376 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = OrthoCtrlUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = TegelSoft.OrthoCtrlUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = OrthoCtrl;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3A3BBDEB1C7A31F300A93376 /* Build configuration list for PBXProject "OrthoCtrl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A3BBE151C7A31F300A93376 /* Debug */,
+				3A3BBE161C7A31F300A93376 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3A3BBE171C7A31F300A93376 /* Build configuration list for PBXNativeTarget "OrthoCtrl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A3BBE181C7A31F300A93376 /* Debug */,
+				3A3BBE191C7A31F300A93376 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3A3BBE1A1C7A31F300A93376 /* Build configuration list for PBXNativeTarget "OrthoCtrlTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A3BBE1B1C7A31F300A93376 /* Debug */,
+				3A3BBE1C1C7A31F300A93376 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3A3BBE1D1C7A31F300A93376 /* Build configuration list for PBXNativeTarget "OrthoCtrlUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A3BBE1E1C7A31F300A93376 /* Debug */,
+				3A3BBE1F1C7A31F300A93376 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3A3BBDE81C7A31F300A93376 /* Project object */;
+}
