@@ -1,0 +1,36 @@
+{
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "039F82674FEEC293114B99A86DF614AD72849EE6" : 0,
+    "EFB32F3D89FBDD28A5B5A9E756A6128FF97D828C" : 0,
+    "BABDEDA06CCA87E16844780F7D9DC681C475B08E" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "CE5D2DD5-D188-4B97-AB64-3F2226D62E37",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "039F82674FEEC293114B99A86DF614AD72849EE6" : "OrthoCtrl\/ISSoundAdditions\/",
+    "EFB32F3D89FBDD28A5B5A9E756A6128FF97D828C" : "RaneKeys\/",
+    "BABDEDA06CCA87E16844780F7D9DC681C475B08E" : "OrthoCtrl\/DDHotKey\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "OrthoCtrl",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "OrthoCtrl.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/InerziaSoft\/ISSoundAdditions",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "039F82674FEEC293114B99A86DF614AD72849EE6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/davedelong\/DDHotKey.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BABDEDA06CCA87E16844780F7D9DC681C475B08E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/drn\/RaneKeys.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EFB32F3D89FBDD28A5B5A9E756A6128FF97D828C"
+    }
+  ]
+}

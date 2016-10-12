@@ -7,6 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "JFRWebSocket.h"
+#import "DDHotKeyCenter.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 

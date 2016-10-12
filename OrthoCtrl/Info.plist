@@ -28,7 +28,14 @@
 	<string>Copyright © 2016 Sebastian Wallin. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
+	<key>LSUIElement</key>
+	<true/>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
