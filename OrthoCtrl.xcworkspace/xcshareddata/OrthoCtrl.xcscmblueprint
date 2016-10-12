@@ -1,17 +1,22 @@
 {
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "874C709BED54D84ECE0535164D93D46A487790D5",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "039F82674FEEC293114B99A86DF614AD72849EE6" : 0,
-    "EFB32F3D89FBDD28A5B5A9E756A6128FF97D828C" : 0,
-    "BABDEDA06CCA87E16844780F7D9DC681C475B08E" : 0
+    "874C709BED54D84ECE0535164D93D46A487790D5" : 9223372036854775807,
+    "5AD30BFEC2D7947D2076915354CDE2FEA57C2E6F" : 9223372036854775807,
+    "BABDEDA06CCA87E16844780F7D9DC681C475B08E" : 0,
+    "EFB32F3D89FBDD28A5B5A9E756A6128FF97D828C" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "CE5D2DD5-D188-4B97-AB64-3F2226D62E37",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "039F82674FEEC293114B99A86DF614AD72849EE6" : "OrthoCtrl\/ISSoundAdditions\/",
-    "EFB32F3D89FBDD28A5B5A9E756A6128FF97D828C" : "RaneKeys\/",
-    "BABDEDA06CCA87E16844780F7D9DC681C475B08E" : "OrthoCtrl\/DDHotKey\/"
+    "874C709BED54D84ECE0535164D93D46A487790D5" : "ortho-ctrl\/",
+    "5AD30BFEC2D7947D2076915354CDE2FEA57C2E6F" : "",
+    "BABDEDA06CCA87E16844780F7D9DC681C475B08E" : "OrthoCtrl\/DDHotKey\/",
+    "EFB32F3D89FBDD28A5B5A9E756A6128FF97D828C" : "RaneKeys\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "OrthoCtrl",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -21,6 +26,16 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/InerziaSoft\/ISSoundAdditions",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "039F82674FEEC293114B99A86DF614AD72849EE6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/bazaglia\/angular-splash-demo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5AD30BFEC2D7947D2076915354CDE2FEA57C2E6F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:wallin\/ortho-ctrl.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "874C709BED54D84ECE0535164D93D46A487790D5"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/davedelong\/DDHotKey.git",
