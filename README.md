@@ -4,6 +4,8 @@ A Mac OSX toolbar application providing global keyboard shortcuts for controllin
 the [OD-11 cloud speaker](https://www.teenageengineering.com/products/od-11)
 from Teenage Engineering
 
+![ortho-ctrl](ortho-ctrl.png)
+
 **This project is very WIP. Your help is much appreciated**
 
 ## Installation
