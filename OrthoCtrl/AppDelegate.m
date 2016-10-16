@@ -6,69 +6,130 @@
 //  Copyright © 2016 Sebastian Wallin. All rights reserved.
 //
 
+// {
+//     "description": "Set the volume to an absolute value",
+//     "type": "object",
+//     "properties": {
+//         "action": {
+//             "enum": [
+//                      "group_set_volume"
+//                      ],
+//             "type": "string"
+//         },
+//         "vol": {
+//             "type": "number",
+//             "minimum": 0,
+//             "maximum": 100
+//         }
+//     },
+//     "required": [
+//                  "action",
+//                  "vol"
+//                  ],
+//     "additionalProperties": false
+// },
+// {
+//     "description": "Make a relative volume change",
+//     "type": "object",
+//     "properties": {
+//         "action": {
+//             "enum": [
+//                      "group_change_volume"
+//                      ],
+//             "type": "string"
+//         },
+//         "amount": {
+//             "type": "number",
+//             "minimum": -100,
+//             "maximum": 100
+//         }
+//     },
+//     "required": [
+//                  "action",
+//                  "amount"
+//                  ],
+//     "additionalProperties": false
+// }
+
+
 #import "AppDelegate.h"
+#import "DeviceDiscoverer.h"
+#import "Device.h"
+#include <sys/types.h>
+#include <arpa/inet.h>
 
 @interface AppDelegate ()
 
 @property (nonatomic, strong, readwrite) NSStatusItem *statusItem;
-@property (nonatomic, strong, readwrite) JFRWebSocket *socket;
+//@property (nonatomic, strong, readwrite) JFRWebSocket *socket;
 @property (nonatomic, readwrite) NSString *url;
+@property Device* selectedDevice;
+@property DeviceDiscoverer*     disco;
+
+@end
+
+@class FindServices;
+@class Service;
+
+@protocol FindServicesDelegate <NSObject>
+
+- (void)findServices:(FindServices*)theFindServices didFindService:(Service*)theService;
+
+- (void)findServices:(FindServices*)theFindServices didLoseService:(Service*)theService;
 
 @end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-
-    //self.url = @"ws://localhost:8001/ws";
-    NSString* ip = [self fetchDeviceURL];
-    
-    if (ip == nil) {
-        // TODO
-        NSLog(@"No device found, exiting");
-        return;
-    }
-    
-    NSString* url = [NSString stringWithFormat:@"ws://%@/ws", ip];
-    
-    self.url = url;
-    
-    self.socket = [[JFRWebSocket alloc] initWithURL:[NSURL URLWithString:self.url] protocols:@[@"chat",@"superchat"]];
-    self.socket.delegate = self;
-    
-    [NSTimer scheduledTimerWithTimeInterval:5.0 target:self
-                                   selector:@selector(pingDevice) userInfo:nil repeats:YES];
-
-    
+    [self startDiscovery];
     [self setupStatusItem];
     [self registerHotkeys];
-    [self.socket connect];
 }
 
-- (NSString*) fetchDeviceURL
+#pragma mark - Bonjour
+
+- (void) startDiscovery
 {
-    NSLog(@"Attempting to get device IP");
-    NSURL *url = [NSURL URLWithString:@"http:/www.orthoplay.com"];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    NSString *ret = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    // Regexp 'window\.speakers_list\s*=\s*\[(.*)\]'
-    
-    NSError *error = NULL;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"window\\.speakers_list\\s*=\\s*\\[\"(.*)\"\\]"
-                                                                           options:NSRegularExpressionCaseInsensitive
-                                                                             error:&error];
-    
-    NSTextCheckingResult *match = [regex firstMatchInString:ret
-                                                    options:0
-                                                      range:NSMakeRange(0, [ret length])];
-    if (match) {
-        NSRange matchRange = [match rangeAtIndex:1];
-        NSString *subString = [ret substringWithRange:matchRange];
-        NSLog(@"Device IP found: %@", subString);
-        return subString;
-    }
-    return nil;
+    self.disco = [[DeviceDiscoverer alloc] init];
+    self.disco.delegate = self;
+    [self.disco start];
 }
+
+- (void) connectDevice: (Device*) device
+{
+    NSLog(@"connecting to device: %@", device.service.name);
+    if (self.selectedDevice != nil) {
+        [self.selectedDevice disconnect];
+        self.selectedDevice.delegate = nil;
+    }
+    self.selectedDevice = device;
+    
+    self.selectedDevice.delegate = self;
+    [self.selectedDevice connect];
+}
+
+- (void)findDevices:(DeviceDiscoverer*)devices didFindDevice:(Device*)device
+{
+    NSLog(@"Found device");
+    // Automatically connect to first found device
+    if (self.selectedDevice == nil) {
+        [self connectDevice:device];
+    }
+    [self updateStatusItemMenu];
+}
+
+- (void)findDevices:(DeviceDiscoverer*)devices didLooseDevice:(Device*)device
+{
+    NSLog(@"Lost device");
+    if (self.selectedDevice == device) {
+        [device disconnect];
+        self.selectedDevice = nil;
+    }
+    [self updateStatusItemMenu];
+}
+
+#pragma mark - Hotkeys
 
 - (void) registerHotkeys
 {
@@ -101,7 +162,7 @@
     BOOL isVolumeUp = [(NSString*)anObject isEqualToString:@"Volume Up"];
     BOOL isVolumeDown = [(NSString*)anObject isEqualToString:@"Volume Down"];
     
-    if (self.socket.isConnected) {
+    if (self.selectedDevice) {
         if (isVolumeDown) {
             [self decreaseVolume:anObject];
         }
@@ -111,6 +172,7 @@
     }
 }
 
+#pragma mark - Status menu
 
 - (void) setupStatusItem
 {
@@ -123,16 +185,32 @@
 - (void)updateStatusItemMenu
 {
     NSMenu *menu = [[NSMenu alloc] init];
-    if ( self.socket.isConnected ) {
-        [menu addItemWithTitle:@"Connected" action:@selector(increaseVolume:) keyEquivalent:@""];
+    NSMutableDictionary*  devices = [self.disco devices];
+
+    NSMenuItem* volUp   = [menu addItemWithTitle:@"Volume up" action:nil keyEquivalent:@"p"];
+    NSMenuItem* volDown = [menu addItemWithTitle:@"Volume down" action:nil keyEquivalent:@"n"];
+    [volUp setKeyEquivalentModifierMask: NSAlternateKeyMask | NSControlKeyMask];
+    [volDown setKeyEquivalentModifierMask: NSAlternateKeyMask | NSControlKeyMask];
+    if (devices.count > 0) {
+        [volUp setAction:@selector(increaseVolume:)];
+        [volDown setAction:@selector(decreaseVolume:)];
     }
-    else {
-        [menu addItemWithTitle:@"Disconnected" action:@selector(increaseVolume:) keyEquivalent:@""];
-    }
-        
+    
     [menu addItem:[NSMenuItem separatorItem]];
-    [menu addItemWithTitle:@"Volume up" action:@selector(increaseVolume:) keyEquivalent:@""];
-    [menu addItemWithTitle:@"Volume down" action:@selector(decreaseVolume:) keyEquivalent:@""];
+    
+    Device* device = nil;
+    for (NSString* key in devices)
+    {
+        device = [devices objectForKey:key];
+        NSMenuItem* item = [menu addItemWithTitle:device.service.name action:@selector(selectDevice:) keyEquivalent:@""];
+        [item setRepresentedObject:device];
+        if (device == self.selectedDevice && self.selectedDevice.isConnected) {
+            [item setState:NSOnState];
+        }
+    }
+    if (devices.count == 0) {
+        [menu addItemWithTitle:@"No speakers found" action:nil keyEquivalent:@""];
+    }
     
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@""];
@@ -142,34 +220,23 @@
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
-    if (self.socket.isConnected) {
-        [self.socket disconnect];
-    }
-}
-
-#pragma mark - Device actions
-
-- (void) pingDevice
-{
-    if (self.socket.isConnected) {
-        [self.socket writeString:@"{ \"value\": 1234, \"action\": \"speaker_ping\" }"];
+    if (self.selectedDevice.isConnected) {
+        [self.selectedDevice disconnect];
     }
 }
 
 #pragma mark - Websocket
 
-- (void) websocketDidConnect:(JFRWebSocket*)socket
+- (void) deviceDidConnect:(Device*)device
 {
-    NSLog(@"websocket is connected:");
-    [self.socket writeString:@"{\"protocol_major_version\":0,\"protocol_minor_version\":4,\"action\":\"global_join\"}"];
-    [self.socket writeString:@"{\"color_index\":3,\"name\":\"guest\", \"uid\":\"uid-12345\", \"realtime_data\":true ,\"action\":\"group_join\"}"];
+    NSLog(@"device is connected");
     [self updateStatusItemMenu];
 }
 
-- (void) websocketDidDisconnect:(JFRWebSocket*)socket error:(NSError*)error
+- (void) deviceDidDisconnect:(Device*)device
 {
+    NSLog(@"device is disconnected:");
     [self updateStatusItemMenu];
-    NSLog(@"websocket is disconnected: %@",[error localizedDescription]);
 }
 
 - (void) websocket:(JFRWebSocket*)socket didReceiveMessage:(NSString*)text
@@ -181,12 +248,23 @@
 
 - (void) increaseVolume:(id)sender
 {
-    [self.socket writeString:@"{ \"amount\": 4, \"action\": \"group_change_volume\" }"];
+    if (self.selectedDevice != nil) {
+        [self.selectedDevice increaseVolume];
+    }
 }
 
 - (void) decreaseVolume:(id)sender
 {
-    [self.socket writeString:@"{ \"amount\": -4, \"action\": \"group_change_volume\" }"];
+    if (self.selectedDevice != nil) {
+        [self.selectedDevice decreaseVolume];
+    }
 }
+
+- (void) selectDevice:(id)sender
+{
+    Device* device = [sender representedObject];
+    [self connectDevice:device];
+}
+
 
 @end

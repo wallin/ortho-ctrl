@@ -25,11 +25,12 @@ $ pod install
 
 ## TODO
 
-- [ ] Auto discover device IP
+- [x] Auto discover device IP
+- [x] Handle multiple groups
+- [ ] Show device color in list
 - [ ] Configurable shortcuts
 - [ ] More actions, like skipping tracks
 - [ ] Show connection status in toolbar icon
-- [ ] Handle multiple groups
 
 ## Licence
 

@@ -19,6 +19,8 @@
 		3A8EBD081C7A5B44005D1235 /* DDHotKeyTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8EBD041C7A5B44005D1235 /* DDHotKeyTextField.m */; };
 		3A8EBD091C7A5B44005D1235 /* DDHotKeyUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8EBD061C7A5B44005D1235 /* DDHotKeyUtilities.m */; };
 		3A8EBD0F1C7AF263005D1235 /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8EBD0E1C7AF263005D1235 /* DDHotKeyCenter.m */; };
+		3AD94CE11DB0C10600C36AA2 /* DeviceDiscoverer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD94CE01DB0C10600C36AA2 /* DeviceDiscoverer.m */; };
+		3AD94CE61DB0C87500C36AA2 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD94CE51DB0C87500C36AA2 /* Device.m */; };
 		C25B348E3D5CE16F3C9127A2 /* libPods-OrthoCtrl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D756F05B6455689CC48B9C /* libPods-OrthoCtrl.a */; };
 		D776436ED5CB33771A5797F4 /* libPods-OrthoCtrlTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9138D2EBDEA8C9E1CFD9F865 /* libPods-OrthoCtrlTests.a */; };
 		FBC1F9A6776AA9BE95A0BD9F /* libPods-OrthoCtrlUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9377701399F605BF1EC126E1 /* libPods-OrthoCtrlUITests.a */; };
@@ -67,6 +69,12 @@
 		3A8EBD061C7A5B44005D1235 /* DDHotKeyUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyUtilities.m; path = DDHotKey/DDHotKeyUtilities.m; sourceTree = SOURCE_ROOT; };
 		3A8EBD0D1C7AF263005D1235 /* DDHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDHotKeyCenter.h; path = DDHotKey/DDHotKeyCenter.h; sourceTree = SOURCE_ROOT; };
 		3A8EBD0E1C7AF263005D1235 /* DDHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyCenter.m; path = DDHotKey/DDHotKeyCenter.m; sourceTree = SOURCE_ROOT; };
+		3AD94CE01DB0C10600C36AA2 /* DeviceDiscoverer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceDiscoverer.m; sourceTree = "<group>"; };
+		3AD94CE21DB0C11E00C36AA2 /* DeviceDiscoverer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceDiscoverer.h; sourceTree = "<group>"; };
+		3AD94CE31DB0C42000C36AA2 /* DeviceDiscovererDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceDiscovererDelegate.h; sourceTree = "<group>"; };
+		3AD94CE41DB0C87500C36AA2 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
+		3AD94CE51DB0C87500C36AA2 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
+		3AD94CE71DB0FFD000C36AA2 /* DeviceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceDelegate.h; sourceTree = "<group>"; };
 		4ACB1381393516240A587D32 /* Pods-OrthoCtrlUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrthoCtrlUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OrthoCtrlUITests/Pods-OrthoCtrlUITests.release.xcconfig"; sourceTree = "<group>"; };
 		69183EC947CA136BBC1B600D /* Pods-OrthoCtrlUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrthoCtrlUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OrthoCtrlUITests/Pods-OrthoCtrlUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		90D756F05B6455689CC48B9C /* libPods-OrthoCtrl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OrthoCtrl.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +162,12 @@
 				3A8EBD061C7A5B44005D1235 /* DDHotKeyUtilities.m */,
 				3A3BBDF31C7A31F300A93376 /* AppDelegate.h */,
 				3A3BBDF41C7A31F300A93376 /* AppDelegate.m */,
+				3AD94CE41DB0C87500C36AA2 /* Device.h */,
+				3AD94CE51DB0C87500C36AA2 /* Device.m */,
+				3AD94CE71DB0FFD000C36AA2 /* DeviceDelegate.h */,
+				3AD94CE21DB0C11E00C36AA2 /* DeviceDiscoverer.h */,
+				3AD94CE01DB0C10600C36AA2 /* DeviceDiscoverer.m */,
+				3AD94CE31DB0C42000C36AA2 /* DeviceDiscovererDelegate.h */,
 				3A3BBDF91C7A31F300A93376 /* Assets.xcassets */,
 				3A3BBDFB1C7A31F300A93376 /* MainMenu.xib */,
 				3A3BBDFE1C7A31F300A93376 /* Info.plist */,
@@ -461,8 +475,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AD94CE11DB0C10600C36AA2 /* DeviceDiscoverer.m in Sources */,
 				3A8EBD071C7A5B44005D1235 /* DDHotKeyAppDelegate.m in Sources */,
 				3A8EBD081C7A5B44005D1235 /* DDHotKeyTextField.m in Sources */,
+				3AD94CE61DB0C87500C36AA2 /* Device.m in Sources */,
 				3A8EBD091C7A5B44005D1235 /* DDHotKeyUtilities.m in Sources */,
 				3A3BBDF81C7A31F300A93376 /* main.m in Sources */,
 				3A8EBD0F1C7AF263005D1235 /* DDHotKeyCenter.m in Sources */,
