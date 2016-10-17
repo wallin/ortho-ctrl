@@ -116,7 +116,7 @@
 
 - (void) decreaseVolume
 {
-    NSLog(@"increaseVolume");
+    NSLog(@"decreaseVolume");
     if (self.socket.isConnected) {
         [self.socket writeString:@"{ \"amount\": -4, \"action\": \"group_change_volume\" }"];
     }
@@ -130,11 +130,12 @@
     }
 }
 
-- (void) updateVolume:(NSNumber*)volume
+- (void) updateVolume:(int)volume
 {
-    NSLog(@"setVolume, %@", volume);
+    NSLog(@"setVolume, %d", volume);
     if (self.socket.isConnected) {
-        [self.socket writeString:@"{ \"vol\": 4, \"action\": \"group_set_volume\" }"];
+        NSString* payload = [NSString stringWithFormat:@"{ \"vol\": %d, \"action\": \"group_set_volume\" }", volume];
+        [self.socket writeString:payload];
     }
 }
 
