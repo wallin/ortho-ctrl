@@ -225,7 +225,7 @@
     }
 }
 
-#pragma mark - Websocket
+#pragma mark - Device
 
 - (void) deviceDidConnect:(Device*)device
 {
@@ -237,11 +237,6 @@
 {
     NSLog(@"device is disconnected:");
     [self updateStatusItemMenu];
-}
-
-- (void) websocket:(JFRWebSocket*)socket didReceiveMessage:(NSString*)text
-{
-    //NSLog(@"%@",text);
 }
 
 #pragma mark - Menu actions
