@@ -27,7 +27,7 @@ $ pod install
 
 - [x] Auto discover device IP
 - [x] Handle multiple groups
-- [ ] Volume slider
+- [x] Volume slider
 - [ ] Show real device name in list
 - [ ] Configurable shortcuts
 - [ ] More actions, like skipping tracks

@@ -66,16 +66,7 @@
 @property Device* selectedDevice;
 @property DeviceDiscoverer*     disco;
 
-@end
-
-@class FindServices;
-@class Service;
-
-@protocol FindServicesDelegate <NSObject>
-
-- (void)findServices:(FindServices*)theFindServices didFindService:(Service*)theService;
-
-- (void)findServices:(FindServices*)theFindServices didLoseService:(Service*)theService;
+@property BOOL updatingVolume;
 
 @end
 
@@ -85,6 +76,7 @@
     [self startDiscovery];
     [self setupStatusItem];
     [self registerHotkeys];
+    self.updatingVolume = false;
 }
 
 #pragma mark - Bonjour
@@ -187,13 +179,22 @@
     NSMenu *menu = [[NSMenu alloc] init];
     NSMutableDictionary*  devices = [self.disco devices];
 
-    NSMenuItem* volUp   = [menu addItemWithTitle:@"Volume up" action:nil keyEquivalent:@"p"];
-    NSMenuItem* volDown = [menu addItemWithTitle:@"Volume down" action:nil keyEquivalent:@"n"];
-    [volUp setKeyEquivalentModifierMask: NSAlternateKeyMask | NSControlKeyMask];
-    [volDown setKeyEquivalentModifierMask: NSAlternateKeyMask | NSControlKeyMask];
-    if (devices.count > 0) {
-        [volUp setAction:@selector(increaseVolume:)];
-        [volDown setAction:@selector(decreaseVolume:)];
+    
+    double volumeValue = 0;
+    if (self.selectedDevice != nil) {
+        volumeValue = self.selectedDevice.volume;
+    }
+    [menu addItemWithTitle:@"Volume:" action:nil keyEquivalent:@""];
+    NSSlider* volumeSlider = [NSSlider sliderWithValue:volumeValue minValue:0 maxValue:100 target:nil action:nil];
+    volumeSlider.frame = CGRectMake(20, 0, 150.0, 25.0);
+    NSMenuItem* volumeItem = [[NSMenuItem alloc] init];
+    [volumeItem setIndentationLevel:2];
+    NSView* volumeView = [[NSView alloc] initWithFrame:CGRectMake(0, 0, 180, 25)];
+    [volumeView addSubview:volumeSlider];
+    [volumeItem setView:volumeView];
+    [menu addItem:volumeItem];
+    if (self.selectedDevice) {
+        [volumeSlider setAction:@selector(setVolume:)];
     }
     
     [menu addItem:[NSMenuItem separatorItem]];
@@ -239,6 +240,12 @@
     [self updateStatusItemMenu];
 }
 
+- (void) deviceDidUpdateVolume:(Device*)device
+{
+    self.updatingVolume = false;
+    [self updateStatusItemMenu];
+}
+
 #pragma mark - Menu actions
 
 - (void) increaseVolume:(id)sender
@@ -252,6 +259,16 @@
 {
     if (self.selectedDevice != nil) {
         [self.selectedDevice decreaseVolume];
+    }
+}
+
+- (void) setVolume:(NSSlider*)slider
+{
+    int requestedVolume = [slider intValue];
+    if (self.selectedDevice != nil && self.updatingVolume == false && requestedVolume != self.selectedDevice.volume) {
+        NSLog(@"requested volume: %d (was %d)", requestedVolume, self.selectedDevice.volume);
+        [self.selectedDevice updateVolume:requestedVolume];
+        self.updatingVolume = true;
     }
 }
 

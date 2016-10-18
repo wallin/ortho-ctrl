@@ -224,6 +224,7 @@
         case 0:
             self.volume = [[json valueForKey:@"vol"] intValue];
             NSLog(@"new volume: %d", self.volume);
+            [self.delegate deviceDidUpdateVolume: self];
             break;
             
         default:

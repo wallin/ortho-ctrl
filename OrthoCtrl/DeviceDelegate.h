@@ -19,6 +19,8 @@
 
 - (void)deviceDidDisconnect:(Device*)device;
 
+- (void)deviceDidUpdateVolume:(Device*)device;
+
 @end
 
 #endif /* DeviceDelegate_h */
