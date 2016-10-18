@@ -37,7 +37,6 @@
     for (NSData* myData in self.service.addresses)
     {
         NSString *addressString;
-        int port=0;
         struct sockaddr *addressGeneric;
         
         addressGeneric = (struct sockaddr *) [myData bytes];
@@ -47,8 +46,7 @@
                 struct sockaddr_in *ip4;
                 char dest[INET_ADDRSTRLEN];
                 self.ipv4 = (struct sockaddr_in *) [myData bytes];
-                port = ntohs(ip4->sin_port);
-                addressString = [NSString stringWithFormat: @"IP4: %s Port: %d", inet_ntop(AF_INET, &self.ipv4->sin_addr, dest, sizeof dest),port];
+                addressString = [NSString stringWithFormat: @"IP4: %s", inet_ntop(AF_INET, &self.ipv4->sin_addr, dest, sizeof dest)];
             }
                 break;
                 
@@ -56,8 +54,7 @@
                 struct sockaddr_in6 *ip6;
                 char dest[INET6_ADDRSTRLEN];
                 self.ipv6 = (struct sockaddr_in6 *) [myData bytes];
-                port = ntohs(ip6->sin6_port);
-                addressString = [NSString stringWithFormat: @"IP6: %s Port: %d",  inet_ntop(AF_INET6, &self.ipv6->sin6_addr, dest, sizeof dest),port];
+                addressString = [NSString stringWithFormat: @"IP6: %s",  inet_ntop(AF_INET6, &self.ipv6->sin6_addr, dest, sizeof dest)];
             }
                 break;
             default:
@@ -117,42 +114,51 @@
 - (void) decreaseVolume
 {
     NSLog(@"decreaseVolume");
-    if (self.socket.isConnected) {
-        [self.socket writeString:@"{ \"amount\": -4, \"action\": \"group_change_volume\" }"];
-    }
+    [self websocketWriteString:@"{ \"amount\": -4, \"action\": \"group_change_volume\" }"];
 }
 
 - (void) increaseVolume
 {
     NSLog(@"increaseVolume");
-    if (self.socket.isConnected) {
-        [self.socket writeString:@"{ \"amount\": 4, \"action\": \"group_change_volume\" }"];
-    }
+    [self websocketWriteString:@"{ \"amount\": 4, \"action\": \"group_change_volume\" }"];
 }
 
 - (void) updateVolume:(int)volume
 {
     NSLog(@"setVolume, %d", volume);
-    if (self.socket.isConnected) {
-        NSString* payload = [NSString stringWithFormat:@"{ \"vol\": %d, \"action\": \"group_set_volume\" }", volume];
-        [self.socket writeString:payload];
-    }
+    NSString* payload = [NSString stringWithFormat:@"{ \"vol\": %d, \"action\": \"group_set_volume\" }", volume];
+    [self websocketWriteString:payload];
 }
 
 - (void) ping
 {
     NSLog(@"ping");
-    if (self.socket.isConnected) {
-        [self.socket writeString:@"{ \"value\": 1234, \"action\": \"speaker_ping\" }"];
-    }
+    [self websocketWriteString:@"{ \"value\": 1234, \"action\": \"speaker_ping\" }"];
+}
+
+- (void) joinGlobal
+{
+    [self websocketWriteString:@"{\"protocol_major_version\":0,\"protocol_minor_version\":4,\"action\":\"global_join\"}"];
+}
+
+- (void) joinGroup
+{
+    [self websocketWriteString:@"{\"color_index\":3,\"name\":\"guest\", \"uid\":\"uid-12345\", \"realtime_data\":true ,\"action\":\"group_join\"}"];
 }
 
 #pragma mark - Websocket
 
+- (void) websocketWriteString: (NSString*) text
+{
+    if (self.socket.isConnected) {
+        [self.socket writeString:text];
+    }
+}
+
 - (void) websocketDidConnect:(JFRWebSocket*)socket
 {
     NSLog(@"websocket is connected:");
-    [self.socket writeString:@"{\"protocol_major_version\":0,\"protocol_minor_version\":4,\"action\":\"global_join\"}"];
+    [self joinGlobal];
     self.isConnected = true;
     [self.delegate deviceDidConnect:self];
 }
@@ -175,25 +181,53 @@
     }
     NSString *response = [json valueForKey:@"response"];
     // No response, but check for update
-    if (response == nil) {
-        response = [json valueForKey:@"update"];
+    if (response != nil) {
+        [self handleResponse:response json:json];
     }
-    NSLog(@"received message: %@", response);
+    else {
+        response = [json valueForKey:@"update"];
+        [self handleUpdate:response json:json];
+    }
+}
+
+- (void) handleResponse:(NSString*) response json: (NSDictionary*) json
+{
+    NSLog(@"received response: %@", response);
     
-    NSArray* responses = @[@"global_joined", @"group_volume_changed"];
+    NSArray* responses = @[@"global_joined", @"group_joined"];
     NSUInteger match = [responses indexOfObject:response];
+    NSArray* state = nil;
+    
     switch (match) {
         case 0:
-            [self.socket writeString:@"{\"color_index\":3,\"name\":\"guest\", \"uid\":\"uid-12345\", \"realtime_data\":true ,\"action\":\"group_join\"}"];
+            [self joinGroup];
             break;
         case 1:
-            self.volume = [json valueForKey:@"vol"];
-            NSLog(@"new volume: %@", self.volume);
+            state = [json objectForKey:@"state"];
+            for (NSDictionary* item in state) {
+                [self handleUpdate:[item valueForKey:@"update"] json: item];
+            }
             break;
         default:
             break;
     }
-    
 }
 
+- (void) handleUpdate:(NSString*) update json: (NSDictionary*) json
+{
+    NSLog(@"received update: %@", update);
+    
+    NSArray* updates = @[@"group_volume_changed"];
+    NSUInteger match = [updates indexOfObject:update];
+
+    switch (match) {
+        case 0:
+            self.volume = [[json valueForKey:@"vol"] intValue];
+            NSLog(@"new volume: %d", self.volume);
+            break;
+            
+        default:
+            break;
+    }
+}
 @end
