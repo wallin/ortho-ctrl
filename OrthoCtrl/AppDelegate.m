@@ -61,12 +61,9 @@
 @interface AppDelegate ()
 
 @property (nonatomic, strong, readwrite) NSStatusItem *statusItem;
-//@property (nonatomic, strong, readwrite) JFRWebSocket *socket;
 @property (nonatomic, readwrite) NSString *url;
 @property Device* selectedDevice;
-@property DeviceDiscoverer*     disco;
-
-@property BOOL updatingVolume;
+@property DeviceDiscoverer* disco;
 
 @end
 
@@ -76,7 +73,6 @@
     [self startDiscovery];
     [self setupStatusItem];
     [self registerHotkeys];
-    self.updatingVolume = false;
 }
 
 #pragma mark - Bonjour
@@ -242,7 +238,6 @@
 
 - (void) deviceDidUpdateVolume:(Device*)device
 {
-    self.updatingVolume = false;
     [self updateStatusItemMenu];
 }
 
@@ -265,10 +260,9 @@
 - (void) setVolume:(NSSlider*)slider
 {
     int requestedVolume = [slider intValue];
-    if (self.selectedDevice != nil && self.updatingVolume == false && requestedVolume != self.selectedDevice.volume) {
+    if (self.selectedDevice != nil) {
         NSLog(@"requested volume: %d (was %d)", requestedVolume, self.selectedDevice.volume);
         [self.selectedDevice updateVolume:requestedVolume];
-        self.updatingVolume = true;
     }
 }
 

@@ -21,6 +21,8 @@
 @property NSTimer* timer;
 @property (weak) id<DeviceDelegate> delegate;
 @property BOOL isConnected;
+@property BOOL isUpdatingVolume;
+@property int pendingVolumeUpdate;
 @property int volume;
 
 - (Device*) init: (NSNetService*) service;

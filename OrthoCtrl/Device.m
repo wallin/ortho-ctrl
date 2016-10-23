@@ -16,6 +16,7 @@
 - (Device*) init:(NSNetService *)service
 {
     self = [super init];
+    self.pendingVolumeUpdate = -1;
     
     if (self != nil)
     {
@@ -125,9 +126,18 @@
 
 - (void) updateVolume:(int)volume
 {
+    if (volume == self.volume) {
+        return;
+    }
     NSLog(@"setVolume, %d", volume);
-    NSString* payload = [NSString stringWithFormat:@"{ \"vol\": %d, \"action\": \"group_set_volume\" }", volume];
-    [self websocketWriteString:payload];
+    if (self.isUpdatingVolume) {
+        self.pendingVolumeUpdate = volume;
+    }
+    else {
+        NSString* payload = [NSString stringWithFormat:@"{ \"vol\": %d, \"action\": \"group_set_volume\" }", volume];
+        self.isUpdatingVolume = true;
+        [self websocketWriteString:payload];
+    }
 }
 
 - (void) ping
@@ -224,7 +234,13 @@
         case 0:
             self.volume = [[json valueForKey:@"vol"] intValue];
             NSLog(@"new volume: %d", self.volume);
+            self.isUpdatingVolume = false;
             [self.delegate deviceDidUpdateVolume: self];
+            // Check if pending volume update
+            if (self.pendingVolumeUpdate >= 0) {
+                [self updateVolume:self.pendingVolumeUpdate];
+                self.pendingVolumeUpdate = -1;
+            }
             break;
             
         default:
