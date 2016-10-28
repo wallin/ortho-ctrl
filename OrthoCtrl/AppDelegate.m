@@ -121,42 +121,45 @@
 
 - (void) registerHotkeys
 {
-    if(![DDHotKeyCenter.sharedHotKeyCenter registerHotKeyWithKeyCode:35
-                                                       modifierFlags:(NSControlKeyMask | NSAlternateKeyMask)
-                                                              target:self
-                                                              action:@selector(hotkeyWithEvent:object:)
-                                                              object:@"Volume Up"]) {
-        NSLog(@"failed to register hotkey.");
-    }
-    else {
-        NSLog(@"registered hotkey - volume up");
-    }
+    // http://boredzo.org/blog/wp-content/uploads/2007/05/IMTx-virtual-keycodes.pdf
+    NSArray* keys = @[
+                      @[@35, @"Volume Up"],
+                      @[@45, @"Volume Down"],
+                      @[@3, @"Next Track"],
+                      @[@11, @"Prev Track"]
+                    ];
     
-    
-    if(![DDHotKeyCenter.sharedHotKeyCenter registerHotKeyWithKeyCode:45
-                                                       modifierFlags:(NSControlKeyMask | NSAlternateKeyMask)
-                                                              target:self
-                                                              action:@selector(hotkeyWithEvent:object:)
-                                                              object:@"Volume Down"]) {
-        NSLog(@"failed to register hotkey.");
-    }
-    else {
-        NSLog(@"registered hotkey - volume down");
+    for (NSArray* key in keys) {
+        if(![DDHotKeyCenter.sharedHotKeyCenter registerHotKeyWithKeyCode:[key[0] integerValue]
+                                                           modifierFlags:(NSControlKeyMask | NSAlternateKeyMask)
+                                                                  target:self
+                                                                  action:@selector(hotkeyWithEvent:object:)
+                                                                  object:key[1]]) {
+            NSLog(@"failed to register hotkey.");
+        }
+        else {
+            NSLog(@"registered hotkey - %@", key[1]);
+        }
     }
 }
 
 - (void) hotkeyWithEvent:(NSEvent *)hkEvent object:(id)anObject {
     NSLog(@"%@ Hotkey Pressed",(NSString*)anObject);
-    BOOL isVolumeUp = [(NSString*)anObject isEqualToString:@"Volume Up"];
-    BOOL isVolumeDown = [(NSString*)anObject isEqualToString:@"Volume Down"];
     
-    if (self.selectedDevice) {
-        if (isVolumeDown) {
-            [self decreaseVolume:anObject];
-        }
-        if (isVolumeUp) {
-            [self increaseVolume:anObject];
-        }
+    if (!self.selectedDevice) {
+        return;
+    }
+    
+    NSArray* items = @[@"Volume Up", @"Volume Down", @"Next Track", @"Prev Track"];
+    NSUInteger match = [items indexOfObject:(NSString*)anObject];
+    
+    switch (match) {
+        case 0:
+            [self.selectedDevice increaseVolume];
+            break;
+        case 1:
+            [self.selectedDevice decreaseVolume];
+            break;
     }
 }
 
@@ -243,19 +246,6 @@
 
 #pragma mark - Menu actions
 
-- (void) increaseVolume:(id)sender
-{
-    if (self.selectedDevice != nil) {
-        [self.selectedDevice increaseVolume];
-    }
-}
-
-- (void) decreaseVolume:(id)sender
-{
-    if (self.selectedDevice != nil) {
-        [self.selectedDevice decreaseVolume];
-    }
-}
 
 - (void) setVolume:(NSSlider*)slider
 {

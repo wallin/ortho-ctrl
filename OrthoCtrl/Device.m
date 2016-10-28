@@ -200,6 +200,8 @@
     }
 }
 
+# pragma mark - Response handlers
+
 - (void) handleResponse:(NSString*) response json: (NSDictionary*) json
 {
     NSLog(@"received response: %@", response);
