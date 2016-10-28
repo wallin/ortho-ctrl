@@ -126,7 +126,8 @@
                       @[@35, @"Volume Up"],
                       @[@45, @"Volume Down"],
                       @[@3, @"Next Track"],
-                      @[@11, @"Prev Track"]
+                      @[@11, @"Prev Track"],
+                      @[@46, @"Toggle Playback"]
                     ];
     
     for (NSArray* key in keys) {
@@ -150,7 +151,7 @@
         return;
     }
     
-    NSArray* items = @[@"Volume Up", @"Volume Down", @"Next Track", @"Prev Track"];
+    NSArray* items = @[@"Volume Up", @"Volume Down", @"Next Track", @"Prev Track", @"Toggle Playback"];
     NSUInteger match = [items indexOfObject:(NSString*)anObject];
     
     switch (match) {
@@ -160,6 +161,17 @@
         case 1:
             [self.selectedDevice decreaseVolume];
             break;
+        case 2:
+            [self.selectedDevice skipToNextTrack];
+            break;
+        case 3:
+            [self.selectedDevice skipToPreviousTrack];
+            break;
+        case 4:
+            [self.selectedDevice togglePlayback];
+
+            break;
+
     }
 }
 

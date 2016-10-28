@@ -21,6 +21,7 @@
 @property NSTimer* timer;
 @property (weak) id<DeviceDelegate> delegate;
 @property BOOL isConnected;
+@property BOOL isPlaying;
 @property BOOL isUpdatingVolume;
 @property int pendingVolumeUpdate;
 @property int volume;
@@ -35,5 +36,10 @@
 - (void) decreaseVolume;
 - (void) increaseVolume;
 - (void) updateVolume: (int) volume;
+- (void) skipToNextTrack;
+- (void) skipToPreviousTrack;
+- (void) startPlayback;
+- (void) stopPlayback;
+- (void) togglePlayback;
 
 @end

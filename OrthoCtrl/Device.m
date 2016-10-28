@@ -17,6 +17,7 @@
 {
     self = [super init];
     self.pendingVolumeUpdate = -1;
+    self.isPlaying = false;
     
     if (self != nil)
     {
@@ -140,6 +141,36 @@
     }
 }
 
+- (void) skipToNextTrack
+{
+    [self websocketWriteString:@"{ \"action\": \"track_skip_to_next\" }"];
+}
+
+- (void) skipToPreviousTrack
+{
+    [self websocketWriteString:@"{ \"action\": \"track_skip_to_prev\" }"];
+}
+
+- (void) stopPlayback
+{
+    [self websocketWriteString:@"{ \"action\": \"playback_stop\" }"];
+}
+
+- (void) startPlayback
+{
+    [self websocketWriteString:@"{ \"action\": \"playback_start\" }"];
+}
+
+- (void) togglePlayback
+{
+    if (self.isPlaying) {
+        [self stopPlayback];
+    }
+    else {
+        [self startPlayback];
+    }
+}
+
 - (void) ping
 {
     NSLog(@"ping");
@@ -229,7 +260,7 @@
 {
     NSLog(@"received update: %@", update);
     
-    NSArray* updates = @[@"group_volume_changed"];
+    NSArray* updates = @[@"group_volume_changed", @"playback_state_changed"];
     NSUInteger match = [updates indexOfObject:update];
 
     switch (match) {
@@ -244,7 +275,10 @@
                 self.pendingVolumeUpdate = -1;
             }
             break;
-            
+        case 1:
+            self.isPlaying = [[json valueForKey:@"playing"] boolValue];
+            NSLog(@"playback state changed. playing: %d", self.isPlaying);
+            break;
         default:
             break;
     }

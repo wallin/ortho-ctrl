@@ -6,7 +6,7 @@ from Teenage Engineering
 
 ![ortho-ctrl](ortho-ctrl.png)
 
-**This project is very WIP. Your help is much appreciated**
+**This project is in development. Your help is much appreciated**
 
 ## Installation
 
@@ -18,19 +18,22 @@ $ pod install
 
 ## Usage
 
-| Action     | Shortcut       |
-|------------|----------------|
-| Volume up  | ctrl + alt + p |
-| Volume down| ctrl + alt + n |
+| Action          | Shortcut       |
+|-----------------|----------------|
+| Volume up       | ctrl + alt + p |
+| Volume down     | ctrl + alt + n |
+| Next track      | ctrl + alt + f |
+| Previous track  | ctrl + alt + b |
+| Toggle playback | ctrl + alt + m |
 
 ## TODO
 
 - [x] Auto discover device IP
 - [x] Handle multiple groups
 - [x] Volume slider
+- [x] More actions, like skipping tracks
 - [ ] Show real device name in list
 - [ ] Configurable shortcuts
-- [ ] More actions, like skipping tracks
 - [ ] Show connection status in toolbar icon
 
 ## Licence
