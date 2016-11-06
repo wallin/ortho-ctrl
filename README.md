@@ -8,13 +8,10 @@ from Teenage Engineering
 
 **This project is in development. Your help is much appreciated**
 
-## Installation
+## Install
 
-This project uses [Cocoapods](https://cocoapods.org/) so you need to run:
-
-```bash
-$ pod install
-```
+[Download latest build](https://github.com/wallin/ortho-ctrl/releases) and
+install the app like any other Mac app.
 
 ## Usage
 
@@ -26,6 +23,23 @@ $ pod install
 | Previous track  | ctrl + alt + b |
 | Toggle playback | ctrl + alt + m |
 
+## Build
+
+This project uses [Cocoapods](https://cocoapods.org/) so you need to run:
+
+```bash
+$ pod install
+```
+
+## Package
+
+First build the project for Archive.
+Then create a DMG using the [appgdmg](https://github.com/LinusU/node-appdmg) tool
+
+```bash
+$ appdmg appdmg.json OrthoBar.app
+```
+
 ## TODO
 
 - [x] Auto discover device IP
@@ -35,6 +49,8 @@ $ pod install
 - [ ] Show real device name in list
 - [ ] Configurable shortcuts
 - [ ] Show connection status in toolbar icon
+- [ ] App Icon
+- [ ] Upload to App Store
 
 ## Licence
 

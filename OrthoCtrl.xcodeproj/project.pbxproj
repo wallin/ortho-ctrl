@@ -624,7 +624,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = TegelSoft.OrthoCtrl;
+				PRODUCT_BUNDLE_IDENTIFIER = TegelSoft.OrthoBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -641,7 +641,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = TegelSoft.OrthoCtrl;
+				PRODUCT_BUNDLE_IDENTIFIER = TegelSoft.OrthoBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
