@@ -59,7 +59,7 @@
 		3A3BBE121C7A31F300A93376 /* OrthoCtrlUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrthoCtrlUITests.m; sourceTree = "<group>"; };
 		3A3BBE141C7A31F300A93376 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A8EBCEB1C7A55E6005D1235 /* libSimpleHotKey.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSimpleHotKey.a; path = Pods/../build/Debug/libSimpleHotKey.a; sourceTree = "<group>"; };
-		3A8EBCF91C7A5790005D1235 /* DDHotKey */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DDHotKey; path = /Users/sebastianwallin/dev/xcode/OrthoCtrl/DDHotKey; sourceTree = "<absolute>"; };
+		3A8EBCF91C7A5790005D1235 /* DDHotKey */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DDHotKey; sourceTree = SOURCE_ROOT; };
 		3A8EBCFF1C7A597B005D1235 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		3A8EBD011C7A5B44005D1235 /* DDHotKeyAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDHotKeyAppDelegate.h; path = DDHotKey/DDHotKeyAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		3A8EBD021C7A5B44005D1235 /* DDHotKeyAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyAppDelegate.m; path = DDHotKey/DDHotKeyAppDelegate.m; sourceTree = SOURCE_ROOT; };
@@ -127,6 +127,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		250E0B0024B6F557002D6883 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				3A8EBCF91C7A5790005D1235 /* DDHotKey */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		3A3BBDE71C7A31F300A93376 = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +144,7 @@
 				3A3BBDF11C7A31F300A93376 /* Products */,
 				65A7C04728EF25A4ABDD3E9D /* Frameworks */,
 				06B2A4084316FB8EEC5C4AC2 /* Pods */,
+				250E0B0024B6F557002D6883 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -225,8 +234,6 @@
 				3A3BBDEC1C7A31F300A93376 /* Sources */,
 				3A3BBDED1C7A31F300A93376 /* Frameworks */,
 				3A3BBDEE1C7A31F300A93376 /* Resources */,
-				E89B2AF5B251B5FD80F53EAA /* [CP] Embed Pods Frameworks */,
-				EDF8F93B1DE0B3D1FC4C8499 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -245,8 +252,6 @@
 				3A3BBDFF1C7A31F300A93376 /* Sources */,
 				3A3BBE001C7A31F300A93376 /* Frameworks */,
 				3A3BBE011C7A31F300A93376 /* Resources */,
-				E3110D91814DCC09966A82F3 /* [CP] Embed Pods Frameworks */,
-				431F031173AB82BFAD3C6494 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -266,7 +271,6 @@
 				3A3BBE0A1C7A31F300A93376 /* Sources */,
 				3A3BBE0B1C7A31F300A93376 /* Frameworks */,
 				3A3BBE0C1C7A31F300A93376 /* Resources */,
-				6A1DBC8A46D65486048525AC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -305,6 +309,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -348,49 +353,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		431F031173AB82BFAD3C6494 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OrthoCtrlTests/Pods-OrthoCtrlTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		678CA7E4A63B3CC6D3CCBA5A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OrthoCtrlTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		6A1DBC8A46D65486048525AC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OrthoCtrlUITests/Pods-OrthoCtrlUITests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7BFB8E408BA2FB7BF0574E66 /* [CP] Check Pods Manifest.lock */ = {
@@ -399,13 +377,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OrthoCtrl-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C863AF6513FC3B9E36E19F4F /* [CP] Check Pods Manifest.lock */ = {
@@ -414,58 +395,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OrthoCtrlUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		E3110D91814DCC09966A82F3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OrthoCtrlTests/Pods-OrthoCtrlTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E89B2AF5B251B5FD80F53EAA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OrthoCtrl/Pods-OrthoCtrl-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EDF8F93B1DE0B3D1FC4C8499 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OrthoCtrl/Pods-OrthoCtrl-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
