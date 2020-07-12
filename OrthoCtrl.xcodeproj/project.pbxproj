@@ -563,6 +563,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug",
 				);
+				MARKETING_VERSION = 0.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = TegelSoft.OrthoBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -580,6 +581,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug",
 				);
+				MARKETING_VERSION = 0.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = TegelSoft.OrthoBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
