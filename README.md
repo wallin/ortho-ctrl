@@ -37,7 +37,7 @@ First build the project for Archive.
 Then create a DMG using the [appgdmg](https://github.com/LinusU/node-appdmg) tool
 
 ```bash
-$ appdmg appdmg.json OrthoBar.app
+$ appdmg appdmg.json OrthoCtrl.app
 ```
 
 ## TODO

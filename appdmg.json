@@ -1,10 +1,10 @@
 {
-  "title": "OrthoBar",
+  "title": "OrthoCtrl",
   "icon": "ortho-logo.icns",
   "background-color": "#FFF",
   "contents": [
     { "x": 448, "y": 144, "type": "link", "path": "/Applications" },
-    { "x": 192, "y": 144, "type": "file", "path": "OrthoBar.app" }
+    { "x": 192, "y": 144, "type": "file", "path": "OrthoCtrl.app" }
   ],
   "window": {
     "size": {
