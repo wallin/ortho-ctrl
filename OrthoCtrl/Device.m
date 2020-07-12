@@ -18,6 +18,9 @@
     self = [super init];
     self.pendingVolumeUpdate = -1;
     self.isPlaying = false;
+    self.groupNames = [[NSMutableDictionary alloc] init];
+    self.speakers = [[NSMutableDictionary alloc] init];
+    self.ipString = nil;
     
     if (self != nil)
     {
@@ -45,18 +48,18 @@
         
         switch( addressGeneric->sa_family ) {
             case AF_INET: {
-                struct sockaddr_in *ip4;
                 char dest[INET_ADDRSTRLEN];
                 self.ipv4 = (struct sockaddr_in *) [myData bytes];
-                addressString = [NSString stringWithFormat: @"IP4: %s", inet_ntop(AF_INET, &self.ipv4->sin_addr, dest, sizeof dest)];
+                // TODO: Only handles IPv4
+                self.ipString = [NSString stringWithFormat: @"%s", inet_ntop(AF_INET, &self.ipv4->sin_addr, dest, sizeof dest)];
+                addressString = [NSString stringWithFormat: @"IP4: %@", self.ipString];
             }
                 break;
                 
             case AF_INET6: {
-                struct sockaddr_in6 *ip6;
                 char dest[INET6_ADDRSTRLEN];
                 self.ipv6 = (struct sockaddr_in6 *) [myData bytes];
-                addressString = [NSString stringWithFormat: @"IP6: %s",  inet_ntop(AF_INET6, &self.ipv6->sin6_addr, dest, sizeof dest)];
+                addressString = [NSString stringWithFormat: @"IP6: %s", inet_ntop(AF_INET6, &self.ipv6->sin6_addr, dest, sizeof dest)];
             }
                 break;
             default:
@@ -70,6 +73,7 @@
 - (JFRWebSocket*) createSocket
 {
     char dest[INET_ADDRSTRLEN];
+    // TODO: this only handles IPv4
     const char* ip = inet_ntop(AF_INET, &self.ipv4->sin_addr, dest, sizeof dest);
     NSString* url = [NSString stringWithFormat:@"ws://%s/ws", ip];
     
@@ -239,28 +243,36 @@
     
     NSArray* responses = @[@"global_joined", @"group_joined"];
     NSUInteger match = [responses indexOfObject:response];
-    NSArray* state = nil;
     
     switch (match) {
         case 0:
+            [self handleStateUpdates:[json objectForKey:@"state"]];
+            [self.delegate deviceDidGetGlobalState:self];
             [self joinGroup];
             break;
         case 1:
-            state = [json objectForKey:@"state"];
-            for (NSDictionary* item in state) {
-                [self handleUpdate:[item valueForKey:@"update"] json: item];
-            }
+            [self handleStateUpdates:[json objectForKey:@"state"]];
             break;
         default:
             break;
     }
 }
 
+- (void) handleStateUpdates:(NSArray*) state
+{
+    if (state != nil) {
+        for (NSDictionary* item in state) {
+            [self handleUpdate:[item valueForKey:@"update"] json: item];
+        }
+    }
+}
+
+// Generic handler for commands present in the `state` key
 - (void) handleUpdate:(NSString*) update json: (NSDictionary*) json
 {
     NSLog(@"received update: %@", update);
     
-    NSArray* updates = @[@"group_volume_changed", @"playback_state_changed"];
+    NSArray* updates = @[@"group_volume_changed", @"playback_state_changed", @"speaker_group", @"speaker_added"];
     NSUInteger match = [updates indexOfObject:update];
 
     switch (match) {
@@ -278,6 +290,18 @@
         case 1:
             self.isPlaying = [[json valueForKey:@"playing"] boolValue];
             NSLog(@"playback state changed. playing: %d", self.isPlaying);
+            break;
+        case 2:
+            // Save a list of group names from the global state, indexed by group_id
+            [self.groupNames setValue:[json valueForKey:@"group_name"] forKey:[json valueForKey:@"group_id"]];
+            NSLog(@"groups: %@", self.groupNames);
+            break;
+        case 3: {
+            // Save a list of speakers connected to this group, indexed by IPv4. This way we can map
+            // IP to group name later.
+            NSDictionary* speaker = [json objectForKey:@"speaker"];
+            [self.speakers setValue:speaker forKey:[speaker valueForKey:@"ip"]];
+        }
             break;
         default:
             break;

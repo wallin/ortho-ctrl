@@ -19,6 +19,8 @@
 
 - (void)deviceDidDisconnect:(Device*)device;
 
+- (void)deviceDidGetGlobalState:(Device*)device;
+
 - (void)deviceDidUpdateVolume:(Device*)device;
 
 @end

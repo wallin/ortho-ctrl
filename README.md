@@ -46,7 +46,7 @@ $ appdmg appdmg.json OrthoBar.app
 - [x] Handle multiple groups
 - [x] Volume slider
 - [x] More actions, like skipping tracks
-- [ ] Show real device name in list
+- [x] Show real device name in list
 - [ ] Configurable shortcuts
 - [ ] Show connection status in toolbar icon
 - [ ] App Icon

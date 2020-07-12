@@ -64,12 +64,14 @@
 @property (nonatomic, readwrite) NSString *url;
 @property Device* selectedDevice;
 @property DeviceDiscoverer* disco;
+@property NSMutableDictionary* globalState;
 
 @end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    self.globalState = [[NSMutableDictionary alloc] init];
     [self startDiscovery];
     [self setupStatusItem];
     [self registerHotkeys];
@@ -214,7 +216,7 @@
     for (NSString* key in devices)
     {
         device = [devices objectForKey:key];
-        NSMenuItem* item = [menu addItemWithTitle:device.service.name action:@selector(selectDevice:) keyEquivalent:@""];
+        NSMenuItem* item = [menu addItemWithTitle:[self resolveDeviceName:device] action:@selector(selectDevice:) keyEquivalent:@""];
         [item setRepresentedObject:device];
         if (device == self.selectedDevice && self.selectedDevice.isConnected) {
             [item setState:NSOnState];
@@ -228,6 +230,16 @@
     [menu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@""];
     
     self.statusItem.menu = menu;
+}
+
+- (NSString*) resolveDeviceName: (Device*) device
+{
+    NSString* groupName = [self.globalState valueForKey:device.ipString];
+    if (groupName == nil) {
+        return device.service.name;
+    }
+
+    return groupName;
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
@@ -250,6 +262,19 @@
     NSLog(@"device is disconnected:");
     [self updateStatusItemMenu];
 }
+
+- (void) deviceDidGetGlobalState:(Device*)device
+{
+    [self.globalState removeAllObjects];
+    for (NSString* ip in device.speakers) {
+        NSDictionary* speaker = [device.speakers objectForKey:ip];
+        NSString* groupName = [device.groupNames valueForKey:[speaker valueForKey:@"group_id"]];
+        [self.globalState setValue:groupName forKey:ip];
+    }
+    NSLog(@"global state: %@", self.globalState);
+    [self updateStatusItemMenu];
+}
+
 
 - (void) deviceDidUpdateVolume:(Device*)device
 {

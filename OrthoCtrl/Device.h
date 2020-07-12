@@ -25,6 +25,9 @@
 @property BOOL isUpdatingVolume;
 @property int pendingVolumeUpdate;
 @property int volume;
+@property NSString* ipString;
+@property NSMutableDictionary* groupNames;
+@property NSMutableDictionary* speakers;
 
 - (Device*) init: (NSNetService*) service;
 
